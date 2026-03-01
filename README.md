@@ -25,3 +25,39 @@ When scanning, Nmap can report a port to be in one of the following states:
 - **Filtered** — The state of the port cannot be determined because a firewall or filtering device is blocking or dropping Nmap’s probes.
 
 **Different kinds of Nmap Scans**
+## To discover the target VM: an initial command "netdiscover" was used 
+
+1. TCP Connect Scan (-sT)
+- Default scan for non‑privileged users
+- Full handshake is established
+- System scanning is logged; easily detectable
+
+2. TCP Syn Scan (-sS)
+- Default scan for privileged users
+- A connection is never fully established. (the connection is immediately disconnected as soon as results are recorded)
+- System scanning target is logged; not as easily detectable (Tools such as wireshark can make such scans detectable)
+
+**Main Difference between -sT and -sS Scan is as follows:**
+![WhatsApp Image 2026-03-01 at 6 59 30 AM](https://github.com/user-attachments/assets/643f4e82-d4c0-4fa1-9184-e860ba7d6988)
+
+3. Decoy Scan (-D)
+- Main purpose of this scan is used to confuse the target by hiding the real scanning system among multiple decoy systems (Instead of sending traffic from a single machine, Nmap can generate traffic from several specified or randomly generated decoy addresses)
+- The real scanning system will still be included in the list of systems that will attemAggressive Scan (-A)pt to scan the target as it is the only system capable of receiving responses from the target
+- Can be combined by different kinds of scans
+- Detectable by advance IDS/IPS syetms due to traffic patterns
+  
+4. Serice Version Detection (-sV)
+- Used to find the service version of applications running on open ports. (Helpful as it helps us know if the application is vulnerable to already known attacks related to the version that is detected)
+- Uses banner grabbing
+  
+5. OS Detection Scan (-O)
+- It isused to identify the operating system running on the target. (Nmap analyzes response traffic and fingerprints the target to guess its OS.)
+- **Special note:** A targets OS can also be roughly guessed by its response to ICMP packets (simply ping the target in command prompt). By checking its TTL value we can come to know if the target is Linux/Unix system (TTL value is around 60) or Windows (TTL value is around 120, double of 60).
+  
+6. Aggressive Scan (-A)
+- This type of scan combines different scan types discussed above such as: Service Detection (-sV), OS Detection (-O) along with script scanning for a combined output of all different scans.
+- This type of scan is painfully obvious.
+  
+7. 
+
+8. 
