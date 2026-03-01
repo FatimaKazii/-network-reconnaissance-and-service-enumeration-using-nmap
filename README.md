@@ -51,13 +51,37 @@ When scanning, Nmap can report a port to be in one of the following states:
 - Uses banner grabbing
   
 5. OS Detection Scan (-O)
-- It isused to identify the operating system running on the target. (Nmap analyzes response traffic and fingerprints the target to guess its OS.)
+- It is used to identify the operating system running on the target. (Nmap analyzes response traffic and fingerprints the target to guess its OS.)
 - **Special note:** A targets OS can also be roughly guessed by its response to ICMP packets (simply ping the target in command prompt). By checking its TTL value we can come to know if the target is Linux/Unix system (TTL value is around 60) or Windows (TTL value is around 120, double of 60).
   
 6. Aggressive Scan (-A)
 - This type of scan combines different scan types discussed above such as: Service Detection (-sV), OS Detection (-O) along with script scanning for a combined output of all different scans.
 - This type of scan is painfully obvious.
   
-7. 
+7. UDP Scan (-sU)
+- This type of scan is used to sccan UDP ports.
+- slower than TCP scans as unlike TCP, UDP does not establish a connection hence response traffic is not always guarenteed
 
-8. 
+8. Ping Scan (-sn)
+- This type of scan is used to know if a a host is alive and responsive.
+- Does not scan ports of the target
+- Good for scanning for alive targets in a network
+- Detectable 
+
+9. No Host Discovery Scan (-Pn) 
+- This type of scan assumes all targets in a network are alive and hence skips checking whether a target is alive.
+- Directly starts scanning ports
+- Useful to scan targets which block ICMP or host discovery probes through firewall
+
+**Firewall Evasion Scans** 
+
+## Background information regarding firewall evasion: 
+
+10. FIN Scan (-sF)
+- In this type of scan Nmap sends probes with the "FIN" flag set to observe how the target responds. (As FIN flag is only expected from hosts that have previously established a connection; unexpected packets with FIN flags can sometimes bypass the firewall)
+
+11. NULL Scan (-sN)
+- In this type of scan Nmap sends probes with the "NULL" flag set to observe how the target responds. (As Firewall always expects packets to have some sort of flag set in its header, having no flags can also sometimes bypass the firewall)
+  
+12. Xmas Scan (-sX)
+- This kind of scan is known as Xmas Scan due to its use of unexpected trio of TCP flags set (URG, PSH and FIN). As these packets contain 3 distinct flags rather than a single flag in its header, it sometimes is able to evade the firewall. 
