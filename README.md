@@ -73,10 +73,17 @@ When scanning, Nmap can report a port to be in one of the following states:
 - Directly starts scanning ports
 - Useful to scan targets which block ICMP or host discovery probes through firewall
 
-**Firewall Evasion Scans** 
-
 ## Background information regarding firewall evasion: 
+Certain scans are designed to observe how a target system or firewall handles unusual TCP packets. These techniques may help gather additional information about ports that initially appear as filtered during standard scans.
+The following scans attempt to bypass basic firewall filtering by sending packets that do not follow the convention. If these scans successfully bypass firewall filtering and produce results, it is important to carefully analyze the reasoning behind the reported port state.
+Some ports may appear "open" or "open|filtered" due to a lack of response. This may not always indicate that the service is accessible, as the system or firewall may simply be dropping packets.
 
+**Why Silence Matters When Scanning Filtered Ports**
+Understanding silence or lack of response is important when interpreting scan results.
+According to TCP behaviour, closed ports typically respond with a "RST" packet when probed. However, ports running certain services or protected by firewall rules may drop unexpected packets instead of responding.
+As a result, no response may indicate an open port, filtered port, or packet filtering behaviour, and should be analyzed carefully before drawing conclusions.
+
+**Firewall Evasion Scans** 
 10. FIN Scan (-sF)
 - In this type of scan Nmap sends probes with the "FIN" flag set to observe how the target responds. (As FIN flag is only expected from hosts that have previously established a connection; unexpected packets with FIN flags can sometimes bypass the firewall)
 
