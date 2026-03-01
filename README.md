@@ -10,7 +10,7 @@ For the purpose of this document, the tool used to perform reconnaissance will b
 
 **What is Nmap:** Nmap is a network scanning and reconnaissance tool that is widely used by penetration testers and security professionals to discover hosts, identify open ports (including the services running on them), enumerate services, and explore various ways to assess or penetrate targets.
 
-## Lab Setup: To demonstrate Nmap and its usability during reconnaissance activities, both Kali Linux and Metasploitable were configured to simulate a lab environment.
+Lab Setup: To demonstrate Nmap and its usability during reconnaissance activities, both Kali Linux and Metasploitable were configured to simulate a lab environment.
 
 **Additional Information Before Conducting Scans:** 
 **-T Flag:** 
@@ -24,8 +24,8 @@ When scanning, Nmap can report a port to be in one of the following states:
 - **Closed** — The port is accessible, but no service is listening on it. The target system typically responds with a RST (Reset) packet.
 - **Filtered** — The state of the port cannot be determined because a firewall or filtering device is blocking or dropping Nmap’s probes.
 
-**Different kinds of Nmap Scans**
-## To discover the target VM: an initial command "netdiscover" was used 
+## Different kinds of Nmap Scans
+**To discover the target VM: an initial command "netdiscover" was used**
 
 1.**TCP Connect Scan (-sT)**
 - Default scan for non‑privileged users
